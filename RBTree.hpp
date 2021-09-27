@@ -49,6 +49,12 @@ struct RBNode {
 			return this->parent->right;
 		return this->parent->left;
 	}
+
+	bool red_collide(){
+		if ( parent == nullptr )
+			return false;
+		return parent->color == RED && color == RED;
+	}
 };
 
 template<typename T>
@@ -82,6 +88,8 @@ class RBTree {
 				} else {
 					current->left = node;
 				}
+				if ( node->red_collide() )
+					std::cout << "Red collide!" << std::endl;
 			}
 		}
 
